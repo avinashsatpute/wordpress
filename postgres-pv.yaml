@@ -2,7 +2,7 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: postgres-pv-volume  # Sets PV's name
-  namespace: Postgresql-ns
+  namespace: postgresql-ns
   labels:
     type: local  # Sets PV's type to local
     compute: db

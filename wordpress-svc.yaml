@@ -7,7 +7,7 @@ metadata:
     compute: Application
 spec:
   ports:
-    - port: 80
+  - port: 80
   selector:
     compute: Application
     tier: frontend
