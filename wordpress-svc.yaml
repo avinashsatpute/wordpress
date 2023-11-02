@@ -2,13 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wordpress
-  namespace: wordpress-ns
   labels:
     compute: Application
 spec:
   ports:
   - port: 80
-    targetPort: 9376
+    targetPort: 80
   selector:
     compute: Application
   type: NodePort

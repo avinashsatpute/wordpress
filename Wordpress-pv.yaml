@@ -1,15 +1,13 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: wordpress-pv-volume  # Sets PV's name
-  namespace: wordpress-ns
+  name: wordpress-pv-volume
   labels:
-    type: local  # Sets PV's type to local
     compute: Application
 spec:
   storageClassName: manual
   capacity:
-    storage: 1Gi # Sets PV Volume
+    storage: 1Gi
   accessModes:
     - ReadWriteMany
   hostPath:

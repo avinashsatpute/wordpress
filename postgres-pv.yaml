@@ -1,15 +1,13 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: postgres-pv-volume  # Sets PV's name
-  namespace: postgresql-ns
+  name: postgres-pv-volume
   labels:
-    type: local  # Sets PV's type to local
     compute: db
 spec:
   storageClassName: manual
   capacity:
-    storage: 1Gi # Sets PV Volume
+    storage: 1Gi
   accessModes:
     - ReadWriteMany
   hostPath:

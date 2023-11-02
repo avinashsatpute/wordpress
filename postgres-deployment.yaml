@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-postgres
+  labels:
+    compute: db
+spec:
+  selector:
+    matchLabels:
+      compute: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        compute: db
+    spec:
+      nodeName: ip-172-31-44-9
+      containers:
+        - image: postgres:10.1
+          name: postgres
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 200m
+            limits:
+              memory: 768Mi
+              cpu: 300m
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pass
+                  key: password
+            - name: postgres_DATABASE
+              value: wordpress
+            - name: postgres_USER
+              value: wordpress
+            - name: postgres_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgre-pass
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: postgres
+          volumeMounts:
+            - name: postgres-persistent-storage
+              mountPath: /var/lib/postgresql
+      volumes:
+        - name: postgres-persistent-storage
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
