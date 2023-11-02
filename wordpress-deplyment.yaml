@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: wordpress
   labels:
-    app: wordpress
+    compute: Application
 spec:
   selector:
     matchLabels:
@@ -32,7 +32,6 @@ spec:
               value: wordpress
           ports:
             - containerPort: 80
-              name: wordpress
           volumeMounts:
             - name: wordpress-persistent-storage
               mountPath: /var/www/html

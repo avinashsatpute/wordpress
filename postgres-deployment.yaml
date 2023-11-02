@@ -27,20 +27,15 @@ spec:
               memory: 768Mi
               cpu: 300m
           env:
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-pass
-                  key: password
-            - name: postgres_DATABASE
-              value: wordpress
-            - name: postgres_USER
-              value: wordpress
-            - name: postgres_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgre-pass
-                  key: password
+          - name: POSTGRES_DB
+            value: wordpress
+          - name: POSTGRES_USER
+            value: wordpress
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgre-pass
+                key: password
           ports:
             - containerPort: 3306
               name: postgres

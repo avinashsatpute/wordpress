@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-postgre
+  labels:
+    compute: db
+spec:
+  ports:
+    - port: 3306
+  selector:
+    compute: db
+  type: NodePort
